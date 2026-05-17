@@ -7,6 +7,12 @@ async function registerUserPost(req, res) {
 
 // GET Routes
 async function loginUserView(req, res) {
+  if (req.session.loginError) {
+    const loginError = req.session.loginError;
+    delete req.session.loginError;
+    return res.render("login", { loginError });
+  }
+
   res.render("login");
 }
 

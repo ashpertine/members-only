@@ -6,6 +6,10 @@
     <title>Login</title>
   </head>
   <body>
+    <h1>Login</h1>
+    <% if(!(typeof loginError === "undefined")) {%>
+      <p>error: <%= loginError %></p>
+    <% } %>
     <form method="POST" action="/login">
       <label for="username">Username: </label>
       <input type="text" name="username" id="username" placeholder="johndoe"> 

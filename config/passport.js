@@ -5,7 +5,7 @@ import { validPassword } from "../utils/passwordUtils.js";
 
 const verifyCallback = async (username, password, done) => {
   try {
-    const { rows } = await pool.query(
+    const { rows } = await appPool.query(
       "SELECT * FROM users WHERE username = $1",
       [username],
     );
@@ -13,13 +13,10 @@ const verifyCallback = async (username, password, done) => {
     const user = rows[0];
     if (!user) {
       return done(null, false, { message: "Invalid Username or Password" });
-    }
-
-    if (validPassword(password, user.password)) {
-      return done(null, user);
-    } else {
+    } else if (!(await validPassword(password, user.password))) {
       return done(null, false, { message: "Invalid Username or Password" });
     }
+    return done(null, user);
   } catch (error) {
     return done(error);
   }
@@ -27,7 +24,7 @@ const verifyCallback = async (username, password, done) => {
 
 passport.use(new LocalStrategy(verifyCallback));
 
-passport.serailizeUser((user, done) => {
+passport.serializeUser((user, done) => {
   return done(null, user.user_id);
 });
 
