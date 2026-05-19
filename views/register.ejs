@@ -7,6 +7,9 @@
   </head>
   <body>
     <h1>Register</h1>
+    <% if(registerError) {%>
+      <p><%= registerError %></p>
+    <% } %>
     <form method="POST" action="/auth/register">
       <label for="username">Username: </label>
       <input type="text" name="username" id="username" placeholder="johndoe"> 

@@ -1,10 +1,10 @@
-import postsQueries from "../queries/postsQueries.js";
+import authQueries from "../queries/authQueries.js";
 
 async function postsView(req, res) {
   if (req.session.passport?.user) {
     try {
       const currentUserId = req.session.passport.user;
-      const results = await postsQueries.getUserById(currentUserId);
+      const results = await authQueries.getUserById(currentUserId);
       const username = results.username;
       res.render("posts", {
         currentUser: username ?? "unknown guest",

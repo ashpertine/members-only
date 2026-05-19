@@ -1,8 +1,18 @@
-import authenticationQueries from "../queries/authenticationQueries.js";
+import authQueries from "../queries/authQueries.js";
 
 async function registerUserPost(req, res) {
-  await authenticationQueries.addNewUser(req.body.username, req.body.password);
-  res.redirect("/auth/login");
+  try {
+    const results = await authQueries.getUserByUsername(req.body.username);
+    if (results.length > 0) {
+      return res.render("register", {
+        registerError: "username already exists!",
+      });
+    }
+    await authQueries.addNewUser(req.body.username, req.body.password);
+    res.redirect("/auth/login");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 }
 
 // GET Routes
@@ -17,8 +27,9 @@ async function loginUserView(req, res) {
 }
 
 async function registerUserView(req, res) {
-  res.render("register");
+  res.render("register", { registerError: false });
 }
+
 export default {
   registerUserPost,
   loginUserView,
