@@ -1,12 +1,9 @@
 import { Router } from "express";
 import { checkAuthentication } from "../middleware/auth.js";
+import postsController from "../middleware/postsController.js";
 
 const postsRouter = Router();
 
-postsRouter.use(checkAuthentication);
-
-postsRouter.get("/", (req, res) => {
-  res.render("posts");
-});
+postsRouter.get("/", postsController.postsView);
 
 export { postsRouter };

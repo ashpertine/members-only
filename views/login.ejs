@@ -10,12 +10,13 @@
     <% if(!(typeof loginError === "undefined")) {%>
       <p>error: <%= loginError %></p>
     <% } %>
-    <form method="POST" action="/login">
+    <form method="POST" action="/auth/login">
       <label for="username">Username: </label>
       <input type="text" name="username" id="username" placeholder="johndoe"> 
       <label for="password">Password</label>
       <input type="password" id="password" name="password"> 
       <button type="submit">Login</button>
     </form>
+    <a href="/auth/register">Register</a>
   </body>
 </html>

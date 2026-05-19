@@ -2,7 +2,7 @@ import authenticationQueries from "../queries/authenticationQueries.js";
 
 async function registerUserPost(req, res) {
   await authenticationQueries.addNewUser(req.body.username, req.body.password);
-  res.redirect("/login");
+  res.redirect("/auth/login");
 }
 
 // GET Routes

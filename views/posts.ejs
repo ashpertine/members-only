@@ -6,9 +6,13 @@
     <title>Posts</title>
   </head>
   <body>
-    <h1>These are the posts!</h1> 
-    <form method="POST" action="/logout">
-      <button type="submit">Log Out</button> 
-    </form>
+    <h1>Hi <%= currentUser %>, These are the posts!</h1> 
+    <% if(noUser) { %>
+      <a href="/auth/login">Log in</a> 
+    <% } else { %>
+      <form method="POST" action="/auth/logout">
+        <button type="submit">Log Out</button> 
+      </form>
+    <% } %>
   </body>
 </html>
