@@ -7,12 +7,38 @@
   </head>
   <body>
     <h1>Hi <%= currentUser %>, These are the posts!</h1> 
-    <% if(noUser) { %>
-      <a href="/auth/login">Log in</a> 
-    <% } else { %>
-      <form method="POST" action="/auth/logout">
-        <button type="submit">Log Out</button> 
-      </form>
-    <% } %>
+    <div class="buttons">
+      <% if(noUser) { %>
+        <a href="/auth/login">Log in</a> 
+      <% } else { %>
+        <form method="POST" action="/new/post">
+          <label for="title">Message Title: </label>
+          <input type="text" name="title" id="title">
+          <br>
+          <label for="content">Content: </label>
+          <textarea rows="20" cols="100" name="content" id="content"></textarea>
+          <br>
+          <button type="submit">New Post</button> 
+        </form>
+        <form method="POST" action="/auth/logout">
+          <button type="submit">Log Out</button> 
+        </form>
+      <% } %>
+    </div>
+    <div class="posts-container">
+      <% if(noPosts) { %>
+        <p>No posts right now...</p>
+      <% } else {%> 
+        <% for(const post of allPosts) { %>
+          <div class="posts-card">
+            <h3><%= post.title %></h3> 
+            <h4>By: <%= post.username %></h4>
+            <p><%= post.content %></p> 
+            <p><%= post.timestamp %></p> 
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+
   </body>
 </html>
