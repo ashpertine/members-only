@@ -17,10 +17,14 @@ async function newPost(user_id, title, content) {
   `;
 
   await appPool.query(SQL, [user_id, title, content]);
-  return;
+}
+
+async function deletePostById(post_id) {
+  await appPool.query("DELETE FROM posts WHERE post_id = $1", [post_id]);
 }
 
 export default {
   getAllPosts,
   newPost,
+  deletePostById,
 };

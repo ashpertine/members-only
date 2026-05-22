@@ -11,18 +11,24 @@
       <% if(noUser) { %>
         <a href="/auth/login">Log in</a> 
       <% } else { %>
-        <form method="POST" action="/new/post">
-          <label for="title">Message Title: </label>
-          <input type="text" name="title" id="title">
-          <br>
-          <label for="content">Content: </label>
-          <textarea rows="20" cols="100" name="content" id="content"></textarea>
-          <br>
-          <button type="submit">New Post</button> 
-        </form>
+         <% if(postInputErrors.length > 0 ) {%>
+      <p>Error: <%= postInputErrors[0].msg %></p>
+         <% } %>
+         <div class="send-post-container">
+          <form method="POST" action="/new/post">
+            <label for="title">Post Title: </label>
+            <input type="text" name="title" id="title">
+            <br>
+            <label for="content">Content: </label>
+            <textarea rows="20" cols="100" name="content" id="content"></textarea>
+            <br>
+            <button type="submit">New Post</button> 
+          </form>
+        </div> 
         <form method="POST" action="/auth/logout">
           <button type="submit">Log Out</button> 
         </form>
+        <a href="/settings">Settings</a>
       <% } %>
     </div>
     <div class="posts-container">
@@ -35,6 +41,11 @@
             <h4>By: <%= post.username %></h4>
             <p><%= post.content %></p> 
             <p><%= post.timestamp %></p> 
+            <% if(isAdmin) {%>
+              <form method="POST" action="/delete/<%= post.post_id %>">
+                <button type="submit">Delete</button> 
+              </form>
+            <% } %>
           </div>
         <% } %>
       <% } %>

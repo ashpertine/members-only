@@ -8,7 +8,8 @@ const SQL = `
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    is_admin BOOLEAN
+    is_member BOOLEAN DEFAULT FALSE,
+    is_admin BOOLEAN DEFAULT FALSE
   );
 
   CREATE TABLE posts(

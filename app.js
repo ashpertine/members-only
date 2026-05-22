@@ -6,6 +6,7 @@ import connectPgSimple from "connect-pg-simple";
 import { appPool } from "./db/pool.js";
 import { postsRouter } from "./routes/postsRouter.js";
 import { authRouter } from "./routes/authRouter.js";
+import { settingsRouter } from "./routes/settingsRouter.js";
 
 const __dirname = import.meta.dirname;
 const pgSession = connectPgSimple(session);
@@ -38,6 +39,7 @@ import "./config/passport.js";
 
 app.use("/", postsRouter);
 app.use("/auth", authRouter);
+app.use("/settings", settingsRouter);
 
 app.listen(3000, (error) => {
   if (error) {
