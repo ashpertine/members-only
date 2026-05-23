@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+:root {
+  --text-color: #e9ecf5;
+  --lavender: #ccd6eb;
+  --blue: #a3c3d9;
+  --magenta: #ae76a6;
+  --error: #993955;
+}
+
+body{
+  font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(13, 13, 13, 1) 100%);
+  color: var(--text-color);
+}
+
+button {
+  font-family: "Lato", sans-serif;
+}
+
+
+.main-container {
+  background-color: #2E2E2E;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction:column;
+  gap: 12px;
+  border: 1px solid grey;
+  border-radius: 12px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+.posts-card {
+  background-color: #474747;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+.interactive-container {
+  display: flex;
+  justify-content: center;
+}
+
+.settings,
+.settings:visited,
+.settings:active {
+  background-color: var(--lavender);
+  color: #2E2E2E;
+  text-decoration: none;
+  border-radius: 100rem;
+  padding: 8px;
+}
+
+.settings img {
+  filter: brightness(20%);
+  padding-top: 2px;
+  width: 37px;
+  height: 30px;
+}
+
+.settings:hover {
+  background-color: #BFCADE;
+}
+
+.delete-button {
+  background-color: var(--error);
+  padding: 4px 8px;
+  border-radius: 100rem;
+  border: none;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: #7D2E3F;
+}
+
+.logout-button,
+.post-dialog-button{
+  background-color: var(--blue);
+  padding: 8px 16px;
+  border-radius: 100rem;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.logout-button:hover, 
+.post-dialog-button:hover {
+  cursor: pointer;
+  background-color: #97B4C9;
+}
+
+.login-link,
+.login-link:visited,
+.login-link:active{
+  background-color: var(--magenta);
+  padding: 8px 16px;
+  border-radius: 100rem;
+  border: none;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+
+dialog {
+  background-color: #2E2E2E;
+  color: var(--text-color);
+  border: 1px solid grey;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-form p {
+  background-color: var(--error);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.post-form label {
+  font-weight: 700;
+}
+
+.post-form input[type="text"],
+.post-form textarea {
+  background-color: #474747;
+  color: var(--text-color);
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+
+.post-form input[type="text"]:focus,
+.post-form textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.post-form textarea {
+  width: clamp(200px, 50vw, 600px);
+  resize: vertical;
+}
+
+.post-form br {
+  display: none;
+}
+
+.post-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.post-form button[type="submit"] {
+  background-color: var(--blue);
+  color: #2E2E2E;
+  padding: 8px 16px;
+  border-radius: 100rem;
+  border: none;
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+}
+
+.post-form button[type="submit"]:hover {
+  background-color: #97B4C9;
+}
+
+.post-form button[type="button"] {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 100rem;
+  border: 1px solid grey;
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+}
+
+.post-form button[type="button"]:hover {
+  background-color: #474747;
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes fadeBackdrop {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+ 
+ @media screen and (max-width: 528px) {
+   body{ 
+    display: flex;
+   }
+   .main-container {
+     flex: 1;
+     margin: 0;
+     border: 0;
+     border-radius: 0;
+   }
+}
+

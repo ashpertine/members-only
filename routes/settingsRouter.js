@@ -8,6 +8,7 @@ settingsRouter.get("/", checkAuthentication, settingsController.settingsView);
 settingsRouter.post(
   "/save",
   checkAuthentication,
+  settingsController.verifyAdmin,
   settingsController.updateUserConfig,
 );
 

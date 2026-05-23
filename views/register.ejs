@@ -3,19 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Register</title>
+    <link rel="stylesheet" href="/auth.css">
   </head>
   <body>
-    <h1>Register</h1>
-    <% if(registerError) {%>
-      <p><%= registerError %></p>
-    <% } %>
-    <form method="POST" action="/auth/register">
-      <label for="username">Username: </label>
-      <input type="text" name="username" id="username" placeholder="johndoe"> 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password"> 
-      <button type="submit">Register</button>
-    </form>
+    <div class="auth-container">
+      <h1>Register</h1>
+      <% if(registerError) {%>
+        <p class="auth-error">Error: <%= registerError %></p>
+      <% } %>
+      <form method="POST" action="/auth/register" class="auth-form">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="johndoe">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Register</button>
+      </form>
+      <a href="/auth/login" class="auth-link">Already have an account? Login</a>
+    </div>
   </body>
 </html>

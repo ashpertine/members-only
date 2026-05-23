@@ -15,9 +15,8 @@ async function settingsView(req, res) {
   });
 }
 
-async function updateUserConfig(req, res) {
+async function verifyAdmin(req, res, next) {
   const userId = req.session.passport.user;
-  const newIsMember = Boolean(req.body.is_member_setting);
   const newIsAdmin = Boolean(req.body.is_admin_setting);
   const oldIsAdmin = await settingsQueries.isUserAdmin(userId);
   const verifiedPassword = req.body.verified_password ?? false;
@@ -35,10 +34,20 @@ async function updateUserConfig(req, res) {
     return res.redirect("/settings");
   }
 
+  res.locals.newIsAdmin = newIsAdmin;
+  next();
+}
+
+async function updateUserConfig(req, res) {
+  const userId = req.session.passport.user;
+  const newIsMember = Boolean(req.body.is_member_setting);
+  const newIsAdmin = res.locals.newIsAdmin;
   await settingsQueries.saveUserConfig(userId, newIsMember, newIsAdmin);
   res.redirect("/");
 }
+
 export default {
   settingsView,
+  verifyAdmin,
   updateUserConfig,
 };

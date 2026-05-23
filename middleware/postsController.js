@@ -4,8 +4,9 @@ import { body, validationResult, matchedData } from "express-validator";
 
 async function postsView(req, res) {
   const allPosts = await postsQueries.getAllPosts();
+  const allPostsReversed = allPosts.reverse();
   let noPosts = false;
-  if (allPosts.length === 0) {
+  if (allPostsReversed.length === 0) {
     noPosts = true;
   }
 
@@ -22,7 +23,7 @@ async function postsView(req, res) {
     }
 
     if (!isMember && !noPosts) {
-      for (const post of allPosts) {
+      for (const post of allPostsReversed) {
         if (post.username !== username) {
           post.username = "******";
         }
@@ -37,7 +38,7 @@ async function postsView(req, res) {
 
     res.render("posts", {
       currentUser: username ?? "unknown guest",
-      allPosts: allPosts,
+      allPosts: allPostsReversed,
       noUser: currentUserId ? false : true,
       noPosts: noPosts,
       isMember: isMember,
